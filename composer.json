@@ -1,0 +1,13 @@
+{
+    "name": "quanvm/convert-epub",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "quanvm\\convertepub\\": "./"
+        }
+    },
+    "require": {
+        "simplehtmldom/simplehtmldom": "master"
+    }
+}

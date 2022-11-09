@@ -11,5 +11,6 @@ tests/data/*
 # Generated site data
 manual/site/%
 
-crawler/simplehtmldom-repositoryo
-
+vendor
+data
+check.sh
