@@ -1,0 +1,49 @@
+#!/usr/bin/env python2
+# vim:fileencoding=utf-8
+from __future__ import unicode_literals, division, absolute_import, print_function
+from calibre import strftime
+from calibre.web.feeds.news import BasicNewsRecipe
+from calibre.ebooks.BeautifulSoup import BeautifulSoup
+import os
+
+class BachNgocSach(BasicNewsRecipe):
+    __author__ 				= 'QV'
+    language 				= 'vi'
+    encoding 				= 'utf-8'
+    no_stylesheets 			= True
+    remove_javascript 		= True
+    recursions 				= 0
+    max_articles_per_feed 	= 3600
+    simultaneous_downloads	= 10
+
+    extra_css      			= '.headline {font-size: x-large;} \n .fact { padding-top: 10pt  }'
+
+    remove_tags    			= [
+        dict(name='a'),
+        dict(name='img'),
+        dict(name='ul'),
+        dict(name='h5'),
+    ]
+
+    def __init__(self, options, log, progress_reporter):
+        BasicNewsRecipe.__init__(self, options, log, progress_reporter)
+        self.title      = options.title
+        self.title_sort = options.title_sort
+        self.cover = options.cover
+
+    def parse_index(self):
+        pubdate 	= strftime('%a, %d %b')
+        articles 	= []
+        articles1	= []
+
+        folder = '/Users/wanvo/Documents/truyen/' + self.title_sort
+        for f in sorted(os.listdir(folder)):
+            file_name, file_ext = os.path.splitext(f)
+            if file_name != 'cover':
+                url = 'file://' + folder + '/' + f;
+                title = int(file_name) - 999
+                articles1.append(dict(title=str(title), url=url, date='', description='', content=''))
+
+        articles.append(('Mục Lục', articles1));
+
+        return articles
