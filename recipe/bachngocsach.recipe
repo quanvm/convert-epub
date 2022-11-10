@@ -39,7 +39,7 @@ class BachNgocSach(BasicNewsRecipe):
         folder = self.title_sort
         for f in sorted(os.listdir(folder)):
             file_name, file_ext = os.path.splitext(f)
-            if file_name != 'cover':
+            if file_name != 'logo':
                 url = 'file://' + folder + '/' + f;
                 title = int(file_name) - 999
                 articles1.append(dict(title=str(title), url=url, date='', description='', content=''))
