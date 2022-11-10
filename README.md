@@ -10,8 +10,17 @@ composer install
 ```
 
 ## Using
+- -n: short name, retrieved from url: https://bachngocsach.com/reader/ban-long
+- -r: recipe name, allowed values: bachngocsach, truyendichz
 
 ```shell
-./download.sh -n ban-long -p 8 -t "Bàn Long"
+./download.sh -n ban-long
 ``` 
-- -n: short name, retrieved from url: https://bachngocsach.com/reader/ban-long
+
+```shell
+./download.sh -n truyen-bach-luyen-thanh-than -r truyendichz
+``` 
+
+## Recipe
+- bachngocsach: https://bachngocsach.com/reader/
+- truyendichz: https://truyendichz.com/

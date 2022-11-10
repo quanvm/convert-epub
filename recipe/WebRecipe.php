@@ -9,6 +9,10 @@ class WebRecipe
             return new Bachngocsach();
         }
 
+        if ($name == Truyendichz::NAME) {
+            return new Truyendichz();
+        }
+
         return null;
     }
 }
