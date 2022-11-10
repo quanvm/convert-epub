@@ -13,7 +13,7 @@ do
 done
 
 if [ ! -d "data/$name" ]; then
- mkdir "data/$name"
+ mkdir -p "data/$name"
 fi
 path="data/$name"
 
