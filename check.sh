@@ -17,4 +17,5 @@ if [ ! -d "data/$name" ]; then
 fi
 path="data/$name"
 
-php download.php $name $i
+cover=`find $path -type f -name "logo.*"`
+echo $cover

@@ -12,6 +12,11 @@ class Bachngocsach implements WebRecipe
         return "https://bachngocsach.com/reader/%s/muc-luc?page=%d";
     }
 
+    public function getLogoUrl()
+    {
+        return "https://bachngocsach.com/reader/%s";
+    }
+
     public function getSelectorList()
     {
         return '#mucluc-list a.chuong-link';
@@ -33,5 +38,10 @@ class Bachngocsach implements WebRecipe
         $fileData .= '<div>' . $content->find('#noi-dung', 0)->innertext . '</div>';
 
         return str_replace($this->removeKeywords(), '', $fileData);
+    }
+
+    public function parseLogo(HtmlDocument $content)
+    {
+        return $content->find('#anhbia img', 0)->src;
     }
 }

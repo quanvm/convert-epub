@@ -31,4 +31,6 @@ done
 
 path="data/$name"
 folder="$(pwd)/$path"
-/Applications/calibre.app/Contents/MacOS/ebook-convert "recipe/$recipe.recipe" "data/$name.epub" --title-sort $folder --title="$title"
+cover=`find $path -type f -name "logo.*"`
+
+/Applications/calibre.app/Contents/MacOS/ebook-convert "recipe/$recipe.recipe" "data/$name.epub" --title-sort $folder --title="$title" --cover="$cover"
