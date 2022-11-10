@@ -1,12 +1,12 @@
 <?php
 namespace quanvm\convertepub\crawler;
 
-use quanvm\convertepub\recipe\WebRecipe;
+use quanvm\convertepub\recipe\IWebRecipe;
 use simplehtmldom\HtmlWeb;
 
 class DownloadList
 {
-  public static function execute(string $name, int $page, WebRecipe $recipe)
+  public static function execute(string $name, int $page, IWebRecipe $recipe)
   {
     $doc = new HtmlWeb();
     $url = sprintf($recipe->getUrl(), $name, $page);

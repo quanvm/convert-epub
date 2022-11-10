@@ -12,10 +12,5 @@ do
     esac
 done
 
-if [ ! -d "data/$name" ]; then
- mkdir "data/$name"
-fi
-path="data/$name"
-
-cover=`find $path -type f -name "logo.*"`
-echo $cover
+title=`php crawler/DownloadPage.php $name $recipe`
+echo $title

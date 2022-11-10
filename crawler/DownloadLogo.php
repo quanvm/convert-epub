@@ -1,12 +1,12 @@
 <?php
 namespace quanvm\convertepub\crawler;
 
-use quanvm\convertepub\recipe\WebRecipe;
+use quanvm\convertepub\recipe\IWebRecipe;
 use simplehtmldom\HtmlWeb;
 
 class DownloadLogo
 {
-  public static function execute(string $name, WebRecipe $recipe)
+  public static function execute(string $name, IWebRecipe $recipe)
   {
     $doc = new HtmlWeb();
     $url = sprintf($recipe->getLogoUrl(), $name);

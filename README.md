@@ -14,5 +14,4 @@ composer install
 ```shell
 ./download.sh -n ban-long -p 8 -t "Bàn Long"
 ``` 
-- -n: short name, retrieved from url: https://bachngocsach.com/reader/ban-long/muc-luc
-- -p: Last page of category page https://bachngocsach.com/reader/ban-long/muc-luc?page=8 
+- -n: short name, retrieved from url: https://bachngocsach.com/reader/ban-long

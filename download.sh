@@ -2,13 +2,11 @@
 
 recipe="bachngocsach"
 
-while getopts n:p:r:t: flag
+while getopts n:r: flag
 do
     case "${flag}" in
         n) name=${OPTARG};;
-        p) pages=${OPTARG};;
         r) recipe=${OPTARG};;
-        t) title=${OPTARG};;
     esac
 done
 
@@ -17,6 +15,7 @@ if [ ! -d "data/$name" ]; then
 fi
 path="data/$name"
 
+pages=`php crawler/DownloadPage.php $name $recipe`
 i=0
 while [ $i -le $pages ]
 do
@@ -28,6 +27,8 @@ do
   fi
   i=$[$i+1]
 done
+
+title=`php crawler/DownloadTitle.php $name $recipe`
 
 path="data/$name"
 folder="$(pwd)/$path"
