@@ -1,27 +1,26 @@
 <?php
 namespace quanvm\convertepub\crawler;
 
+use quanvm\convertepub\recipe\WebRecipe;
 use simplehtmldom\HtmlWeb;
 
 class DownloadList
 {
-  public static function execute(string $name, int $page)
+  public static function execute(string $name, int $page, WebRecipe $recipe)
   {
     $doc = new HtmlWeb();
-    $url="https://bachngocsach.com/reader/{$name}/muc-luc?page={$page}";
+    $url = sprintf($recipe->getUrl(), $name, $page);
     $html = $doc->load($url);
 
-    foreach ($html->find('#mucluc-list a.chuong-link') as $key => $link) {
+    foreach ($html->find($recipe->getSelectorList()) as $key => $link) {
       $chap = 1000 + ($page*100 + $key);
       $filename = "data/{$name}/{$chap}.html";
       if (!file_exists($filename)) {
-        $contentUrl = "https://bachngocsach.com" . $link->href;
+        $contentUrl = sprintf($recipe->getContentUrl(), $link->href);
         $content = $doc->load($contentUrl);
 
         if ($content) {
-          $fileData = '<h1>' . $content->find('#chuong-title', 0)->innertext . '</h1>';
-          $fileData .= '<div>' . $content->find('#noi-dung', 0)->innertext . '</div>';
-          $newContent = str_replace(['BachNgocSach.com', 'bachngocsach.com', 'Bachngocsach.com'], '', $fileData);
+          $newContent = $recipe->parseContent($content);
           file_put_contents($filename, $newContent);
 
           $content->clear();

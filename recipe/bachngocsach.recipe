@@ -36,7 +36,7 @@ class BachNgocSach(BasicNewsRecipe):
         articles 	= []
         articles1	= []
 
-        folder = '/Users/wanvo/Documents/truyen/' + self.title_sort
+        folder = self.title_sort
         for f in sorted(os.listdir(folder)):
             file_name, file_ext = os.path.splitext(f)
             if file_name != 'cover':
