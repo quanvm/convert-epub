@@ -9,12 +9,12 @@ class Bachngocsach implements IWebRecipe
 
     public function getUrl(): string
     {
-        return "https://bachngocsach.com/reader/%s/muc-luc?page=%d";
+        return "https://bachngocsach.com.vn/reader/%s/muc-luc?page=%d";
     }
 
     public function getLogoUrl(): string
     {
-        return "https://bachngocsach.com/reader/%s";
+        return "https://bachngocsach.com.vn/reader/%s";
     }
 
     public function getSelectorList(): string
@@ -24,12 +24,12 @@ class Bachngocsach implements IWebRecipe
 
     public function getContentUrl(): string
     {
-        return "https://bachngocsach.com%s";
+        return "https://bachngocsach.com.vn%s";
     }
 
     public function removeKeywords(): array
     {
-        return ['BachNgocSach.com', 'bachngocsach.com', 'Bachngocsach.com', 'sach.com'];
+        return ['BachNgocSach.com', 'bachngocsach.com', 'Bachngocsach.com', 'sach.com', 'bachngocsach.com.vn'];
     }
 
     public function parseContent(HtmlDocument $content): string
