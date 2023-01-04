@@ -10,7 +10,7 @@ composer install
 ```
 
 ## Using
-- -n: short name, retrieved from url: https://bachngocsach.com/reader/ban-long
+- -n: short name, retrieved from url: https://bachngocsach.com.vn/reader/ban-long
 - -r: recipe name, allowed values: bachngocsach, truyendichz
 
 ```shell
@@ -22,5 +22,5 @@ composer install
 ``` 
 
 ## Recipe
-- bachngocsach: https://bachngocsach.com/reader/
+- bachngocsach: https://bachngocsach.com.vn/reader/
 - truyendichz: https://truyendichz.com/
