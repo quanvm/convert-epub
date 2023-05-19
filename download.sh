@@ -1,7 +1,8 @@
 #!/bin/bash
 
-file="config.txt"
+recipe=`yq eval '.recipe' 'config.yml'`
 
-while IFS= read -r line; do
-  ./download_single.sh $line
-done < "$file"
+items=($(yq eval '.items' 'config.yml'))
+for item in "${items[@]}"; do
+  ./download_single.sh -n $item -r $recipe
+done

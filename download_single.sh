@@ -35,5 +35,6 @@ title=`php crawler/DownloadTitle.php $name $recipe`
 path="data/$name"
 folder="$(pwd)/$path"
 cover=`find $path -type f -name "logo.*"`
+target=`yq eval '.target_folder' 'config.yml'`
 
-/Applications/calibre.app/Contents/MacOS/ebook-convert "recipe/$recipe.recipe" "data/$name.epub" --title-sort $folder --title "$title" --cover "$cover"
+/Applications/calibre.app/Contents/MacOS/ebook-convert "recipe/$recipe.recipe" "$target/$name.epub" --title-sort $folder --title "$title" --cover "$cover"
