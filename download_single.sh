@@ -10,7 +10,7 @@ do
     esac
 done
 
-printf "Download: $name"
+echo "Download: $name"
 
 if [ ! -d "data/$name" ]; then
  mkdir -p "data/$name"
@@ -25,7 +25,6 @@ do
   page=$[1099 + $i*100]
   if [ ! -f "$path/$page.html" ]; then
    php download.php $name $i $recipe
-   sleep 1
   fi
   i=$[$i+1]
 done
