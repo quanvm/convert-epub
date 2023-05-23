@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+namespace quanvm\convertepub\crawler;
 
-use quanvm\convertepub\crawler\DownloadList;
-use quanvm\convertepub\crawler\DownloadLogo;
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use quanvm\convertepub\recipe\WebRecipe;
 
 $name = $argv[1];

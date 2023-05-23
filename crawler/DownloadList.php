@@ -25,7 +25,9 @@ class DownloadList
 
           $content->clear();
           unset($content);
-          sleep(10);
+
+          // Avoid websites block us :)
+          sleep(5);
         } else {
           var_dump("Could not download $contentUrl");
         }
