@@ -16,3 +16,4 @@ data
 check.sh
 .idea
 .DS_Store
+config.local.yml
