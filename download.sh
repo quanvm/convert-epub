@@ -10,16 +10,9 @@ function configGet {
   echo $recipe
 }
 
-function download {
+function downloadChapter {
   name=$1
   recipe=$2
-
-  echo "Download: $name"
-
-  path="data/$name"
-  if [ ! -d $path ]; then
-   mkdir -p $path
-  fi
 
   pages=(`php crawler/DownloadPage.php $name $recipe`)
   total=$[ ${pages[0]}*100 + ${pages[1]} ]
@@ -30,9 +23,15 @@ function download {
     php crawler/download.php $name $i $recipe $total
     i=$[$i+1]
   done
+}
+
+function convert {
+  name=$1
+  recipe=$2
 
   title=`php crawler/DownloadTitle.php $name $recipe`
 
+  path="data/$name"
   folder="$(pwd)/$path"
   cover=`find $path -type f -name "logo.*"`
   target=$(configGet '.target_folder')
@@ -44,6 +43,21 @@ function download {
     /Applications/calibre.app/Contents/MacOS/ebook-convert $recipe_path "$epub_path" --title-sort $folder --title "$title" --cover "$cover" >> /dev/null
   fi
   echo "New file saved in $epub_path"
+}
+
+function download {
+  name=$1
+  recipe=$2
+
+  echo "Download: $name"
+
+  path="data/$name"
+  if [ ! -d $path ]; then
+   mkdir -p $path
+  fi
+
+  downloadChapter $name $recipe
+  convert $name $recipe
 }
 
 recipe=$(configGet '.recipe')
