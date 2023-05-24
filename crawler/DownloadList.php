@@ -34,10 +34,12 @@ class DownloadList
         }
       }
 
-      echo "Downloading ... $chapNumber / $total \r";
+      echo "Downloading ... $chapNumber/$total \r";
     }
 
     $html->clear();
     unset($html);
+
+    sleep(1);
   }
 }

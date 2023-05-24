@@ -21,11 +21,11 @@ function download {
    mkdir -p $path
   fi
 
-  pages=`php crawler/DownloadPage.php $name $recipe`
+  pages=(`php crawler/DownloadPage.php $name $recipe`)
+  total=$[ ${pages[0]}*100 + ${pages[1]} ]
   i=0
-  while [ $i -le $pages ]
+  while [ $i -le ${pages[0]} ]
   do
-    total=$[$pages*100] # ETA a number up to $pages
     page=$[1099 + $i*100]
     php crawler/download.php $name $i $recipe $total
     i=$[$i+1]
