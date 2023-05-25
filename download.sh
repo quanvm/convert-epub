@@ -13,16 +13,35 @@ function configGet {
 function downloadChapter {
   name=$1
   recipe=$2
+  page=$3
+  total=$4
 
-  pages=(`php crawler/DownloadPage.php $name $recipe`)
-  total=$[ ${pages[0]}*100 + ${pages[1]} ]
   i=0
-  while [ $i -le ${pages[0]} ]
+  while [ $i -le $page ]
   do
-    page=$[1099 + $i*100]
     php crawler/download.php $name $i $recipe $total
     i=$[$i+1]
   done
+}
+
+function verify {
+  name=$1
+  total=$2
+
+  download_again=0
+  i=0
+  while [ $i -lt $total ]
+  do
+    chap=$[1000 + $i]
+    file_path="data/$name/$chap.html"
+    if [ ! -f "$file_path" ]; then
+      download_again=1
+      break
+    fi
+    i=$[$i+1]
+  done
+
+  echo $download_again
 }
 
 function convert {
@@ -56,7 +75,19 @@ function download {
    mkdir -p $path
   fi
 
-  downloadChapter $name $recipe
+  pages=(`php crawler/DownloadPage.php $name $recipe`)
+  total=$[ ${pages[0]}*100 + ${pages[1]} ]
+  page=${pages[0]}
+
+  downloadChapter $name $recipe $page $total
+
+  echo "Verifying items ... "
+  download_again=$(verify $name $total)
+  if [[ $download_again -eq 1 ]]; then
+    echo "Download missing files ......."
+    downloadChapter $name $recipe $page $total
+  fi
+
   convert $name $recipe
 }
 
