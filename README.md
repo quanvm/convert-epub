@@ -18,5 +18,3 @@ composer install
 
 ## Recipe
 - bachngocsach: https://bachngocsach.com.vn/reader/
-- truyendichz: https://truyendichz.com/
-.....
